@@ -19,7 +19,7 @@ public class IMSStartActivity extends BaseUIActivity {
 				closeActivity();
 			}
 		};
-		h.sendMessageDelayed(h.obtainMessage(), 500);
+		h.sendMessageDelayed(h.obtainMessage(), 1500);
 	}
 
 	@Override
