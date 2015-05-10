@@ -18,7 +18,7 @@ public class MeetingDataFile {
 	}
 
 	/**
-	 * 根据操作系统获取request.xml路径
+	 * 根据操作系统获取MeetingData.xml路径
 	 * @return
 	 */
 	public static String getTmpDataFile(){

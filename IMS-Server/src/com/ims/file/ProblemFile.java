@@ -24,7 +24,19 @@ public class ProblemFile {
 	File file = null;
 
 	public ProblemFile() {
-		file = new File("c:/problem.txt");
+		file = new File(getTmpProblemFile());
+	}
+
+	/**
+	 * 根据操作系统获取problem.xml路径
+	 * @return
+	 */
+	public static String getTmpProblemFile(){
+		String os_name = System.getProperty("os.name").toLowerCase();
+		if(os_name.contains("windows")){
+			return "c:/problem.xml";
+		}
+		return "/tmp/problem.xml";
 	}
 
 	// 增加一个问题
