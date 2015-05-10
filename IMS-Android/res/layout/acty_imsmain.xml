@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/main_header"
+        layout="@layout/main_header" />
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white" >
+
+        <include
+            android:id="@+id/main_content_identify"
+            layout="@layout/frame_identify"
+            android:visibility="gone"
+         />
+        
+         <include
+            android:id="@+id/main_content_login"
+            layout="@layout/frame_login"
+            android:visibility="gone"
+            />
+         
+          <include
+            android:id="@+id/main_content_usermessage"
+            layout="@layout/frame_usermessage"
+            android:visibility="gone"
+            />
+
+        <include
+            android:id="@+id/main_content_display"
+            layout="@layout/frame_display"
+            android:visibility="gone" />
+        
+        
+
+        <include
+            android:id="@+id/main_content_ask"
+            layout="@layout/frame_ask"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/main_content_download"
+            layout="@layout/frame_download"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/main_content_setting"
+            layout="@layout/frame_setting"  android:visibility="gone"/>
+    </FrameLayout>
+
+    <include
+        android:id="@+id/main_footer"
+        layout="@layout/main_footer" />
+
+</LinearLayout>

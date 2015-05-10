@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <!-- 后面的添加直接复制 下面的RelativeLayout即可~ -->
+
+                <RelativeLayout
+                    android:id="@+id/acty_etips_main_setting_rely_aboutus"
+                    style="@style/Acty_Course_Setting.rely" >
+
+                    <TextView
+                        style="@style/Acty_Course_Setting.textview"
+                        android:text="关于我们" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        style="@style/Acty_Course_Setting.imageview" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_bg_frame_ask"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/frame_ask_btn_submit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/btn_base_blue"
+        android:text="  提交"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/frame_ask_et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/frame_ask_btn_submit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/edittext"
+        android:ems="10"
+        android:hint="亲，有啥问题？"
+        android:textColor="@color/black"
+        android:textSize="16sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <ListView
+        android:id="@+id/frame_ask_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/frame_ask_et_content"
+        android:layout_alignLeft="@+id/frame_ask_et_content"
+        android:layout_alignParentTop="true" >
+    </ListView>
+
+</RelativeLayout>
