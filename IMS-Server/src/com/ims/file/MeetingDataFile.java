@@ -8,25 +8,14 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import com.ims.common.FilePath;
 import com.ims.entity.MeetingData;
 
 public class MeetingDataFile {
 	File file = null;
 
 	public MeetingDataFile() {
-		file = new File(getTmpDataFile());
-	}
-
-	/**
-	 * 根据操作系统获取MeetingData.xml路径
-	 * @return
-	 */
-	public static String getTmpDataFile(){
-		String os_name = System.getProperty("os.name").toLowerCase();
-		if(os_name.contains("windows")){
-			return "c:/MeetingData.xml";
-		}
-		return "/tmp/MeetingData.xml";
+		file = new File(FilePath.getMeetingDataFile());
 	}
 
 	// 增加一个问题

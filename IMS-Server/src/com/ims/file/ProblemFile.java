@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import com.ims.common.FilePath;
 import com.ims.entity.Problem;
 
 /**
@@ -24,19 +25,7 @@ public class ProblemFile {
 	File file = null;
 
 	public ProblemFile() {
-		file = new File(getTmpProblemFile());
-	}
-
-	/**
-	 * 根据操作系统获取problem.xml路径
-	 * @return
-	 */
-	public static String getTmpProblemFile(){
-		String os_name = System.getProperty("os.name").toLowerCase();
-		if(os_name.contains("windows")){
-			return "c:/problem.xml";
-		}
-		return "/tmp/problem.xml";
+		file = new File(FilePath.getProblemFile());
 	}
 
 	// 增加一个问题

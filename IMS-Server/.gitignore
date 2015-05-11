@@ -1,3 +1,5 @@
 bin
 .idea
 .settings
+data/MeetingData.xml
+data/problem.txt

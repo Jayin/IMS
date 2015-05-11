@@ -37,7 +37,7 @@ public class IMSServer {
 	}
 
 	// 初始化，尝试监听10007 端口，如果不行，就向上加1，直到监听成功
-	// 端连接尝试监听1006，如果不行，就加 -1，直到成功
+	// 端连接尝试监听10006，如果不行，就加 -1，直到成功
 	private void init() {
 		initLong();
 		initShort();
@@ -158,12 +158,10 @@ public class IMSServer {
 	}
 
 	public int getLongPort() {
-		// TODO Auto-generated method stub
 		return LONGPORT;
 	}
 
 	public int getShortPort() {
-		// TODO Auto-generated method stub
 		return SHORTPORT;
 	}
 
