@@ -51,11 +51,8 @@ public class TaskForShort implements Runnable {
 
 		try {
 			RequestMessage rqmg = RequestMessage.parse(socket.getInputStream());
-			System.out.println("TaskForShort -- >> 请求对象"+rqmg);
+			System.out.println("Problem ->"+rqmg);
 			if (rqmg.getRequestType() == RequestMessage.REQUEST_TYPE_PROBLEM) {
-				System.out.println("保存了问题---》》》" + rqmg.getUsername()
-						+ "  提的问题是： " + rqmg.getProblemCtn());
-				
 				Problem p = new Problem(rqmg.getUsername(), rqmg.getProblemCtn());
 				ProblemFile fileM = new ProblemFile();
 				fileM.create(p);
@@ -63,11 +60,10 @@ public class TaskForShort implements Runnable {
 				ResponseMessage r = new ResponseMessage();
 				r.setState(ResponseMessage.RESPONSE_STATE_SUCCEED);
 				
-				
 				OutputStream out = socket.getOutputStream();
 				BufferedWriter w = new BufferedWriter(new OutputStreamWriter(out));
 				
-				System.out.println("响应---->>>"+r.getXML());
+				System.out.println("Response -> "+r.getXML());
 				w.write(r.getXML());
 				w.flush();
 			}

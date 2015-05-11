@@ -29,15 +29,15 @@ public class ProblemFile {
 	}
 
 	// 增加一个问题
-	public void create(Problem problem) {
+	public synchronized void  create(Problem problem) {
 		try {
 			FileOutputStream out = new FileOutputStream(file, true);
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
 					out));
-			writer.write(problem.getUsername() + "@@@" + problem.getProblemCtn()
+			writer.append(problem.getUsername() + "@@@" + problem.getProblemCtn()
 					+ "\r\n");
+			writer.flush();
 			writer.close();
-
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
