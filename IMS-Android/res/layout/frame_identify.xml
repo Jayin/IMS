@@ -43,13 +43,6 @@
         android:textColor="@color/white"
         android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/frame_identify_qrcode_moni"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/frame_identity_ed_name"
-        android:layout_alignLeft="@+id/frame_identity_ed_name"
-        android:layout_marginLeft="88dp"
-        android:text="模拟" />
+    
 
 </RelativeLayout>

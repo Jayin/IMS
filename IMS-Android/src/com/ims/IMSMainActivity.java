@@ -32,7 +32,7 @@ import com.zxing.activity.CaptureActivity;
  */
 public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 
-	private Button btn_moni,btn_ask_submit;
+	private Button btn_ask_submit;
 	private EditText et_ask_content;
 	private View switchBtn, qrcode;
 	private RadioButton display, identify, ask, download, setting,
@@ -118,8 +118,6 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 		tv_identify_info.setText("尚未验证！\n请扫一扫二维码验证");
 		qrcode.setOnClickListener(this);
 
-		btn_moni = (Button) _getView(R.id.frame_identify_qrcode_moni);
-		btn_moni.setOnClickListener(this);
 	}
 
 	private void initDownLoad() {
@@ -232,13 +230,6 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 
 		if (!client.isIdentity()) {// 判断有没有确认了IP 地址
 
-			if (viewId == R.id.frame_identify_qrcode_moni) {
-
-				Intent i = new Intent();
-				i.putExtra("result", "192.168.1.101@@@10007@@@10006");
-				onActivityResult(Constant.ReqCode_main2Qrcode, RESULT_OK, i);
-				return;
-			}
 			if (viewId == R.id.frame_identify_qrcode) {
 				String username = ed_identify_username.getText().toString()
 						.trim();
