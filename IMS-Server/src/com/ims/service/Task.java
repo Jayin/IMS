@@ -56,15 +56,8 @@ public class Task implements Runnable {
 				out.write(data);
 				out.flush();
 				Thread.sleep(1000);
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-				break;
-			}  catch (InterruptedException e) {
-				e.printStackTrace();
-				break;
 			}catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("用户断开连接");
 				break;
 			} 
 		}
