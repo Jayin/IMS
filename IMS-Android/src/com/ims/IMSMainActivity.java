@@ -151,15 +151,24 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 		identify = (RadioButton) _getView(R.id.main_footbar_identify);
 		setting = (RadioButton) _getView(R.id.main_footbar_setting);
 
-		currentPressed = identify;
-
-		currentPressed.setChecked(true);
+		resetFooterState();
+		
 		display.setOnClickListener(this);
 		ask.setOnClickListener(this);
 		download.setOnClickListener(this);
 		identify.setOnClickListener(this);
 		setting.setOnClickListener(this);
 
+	}
+	
+	public void resetFooterState(){
+		currentPressed = identify;
+
+		currentPressed.setChecked(true);
+		display.setChecked(false);
+		ask.setChecked(false);
+		download.setChecked(false);
+		setting.setChecked(false);
 	}
 
 	private void initHeader() {
@@ -243,11 +252,14 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 						Constant.ReqCode_main2Qrcode);
 				return;
 			}
-
-			Toast.makeText(IMSMainActivity.this, "请先确认IP", Toast.LENGTH_LONG)
+			
+			resetFooterState();
+			Toast.makeText(IMSMainActivity.this, "请先扫二维码链接服务端", Toast.LENGTH_SHORT)
 					.show();
 			return;
 		}
+		Toast.makeText(IMSMainActivity.this, "6666", Toast.LENGTH_SHORT)
+		.show();
 		switch (v.getId()) {
 		case R.id.main_footbar_ask:
 			switchPressedState(v);
