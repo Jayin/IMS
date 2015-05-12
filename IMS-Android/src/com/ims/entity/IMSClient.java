@@ -41,6 +41,8 @@ public class IMSClient extends AbstractClient {
 	private boolean isIdentity = false;
 	private boolean isDownloadMeetingData = false;
 	private boolean isDisplay = false;
+	//是否正在同步图片
+	private boolean isSyncingImage = true;
 
 	private String askPro;
 
@@ -163,14 +165,16 @@ public class IMSClient extends AbstractClient {
 		try {
 
 			while (true) {
-				Bitmap bitmap = BitmapFactory.decodeStream(getDisplyaSocket()
-						.getInputStream());
-				Log.i("debug", "获得bitmap! ");
+				if(isSyncingImage){
+					Bitmap bitmap = BitmapFactory.decodeStream(getDisplyaSocket()
+							.getInputStream());
+					Log.i("debug", "获得bitmap! ");
 
-				Message msg = h.obtainMessage();
-				msg.obj = bitmap;
-				h.sendMessage(msg);
-				Log.i("debug", "发送bitmap! ");
+					Message msg = h.obtainMessage();
+					msg.obj = bitmap;
+					h.sendMessage(msg);
+					Log.i("debug", "发送bitmap! ");
+				}
 			}
 
 		} catch (IOException e) {
@@ -297,4 +301,14 @@ public class IMSClient extends AbstractClient {
 	public void setAskPro(String pro) {
 		this.askPro = pro;
 	}
+
+	public boolean isSyncingImage() {
+		return isSyncingImage;
+	}
+
+	public void setSyncingImage(boolean isSyncingImage) {
+		this.isSyncingImage = isSyncingImage;
+	}
+	
+	
 }

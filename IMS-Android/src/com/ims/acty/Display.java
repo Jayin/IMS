@@ -1,14 +1,9 @@
 package com.ims.acty;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -26,6 +21,7 @@ public class Display extends BaseUIActivity implements View.OnClickListener{
 	private IMSClient client = null;
 	
 	private View btn_sync,btn_pre,btn_next,btn_save;
+	private int image_total = -1, cur = -1;
  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +49,7 @@ public class Display extends BaseUIActivity implements View.OnClickListener{
 			public void onClick(View v) {
 				menu.setVisibility(View.VISIBLE);
 				h.sendMessageDelayed(h.obtainMessage(), 2000);
-
+				
 			}
 		});
 		client.getDisplayHandler().setHolding(iv);
@@ -74,22 +70,34 @@ public class Display extends BaseUIActivity implements View.OnClickListener{
 
 	@Override
 	protected void initData() {
-		client = client.getExistInstance();
-		
+		client = IMSClient.getExistInstance();
+		updateImageCount();
 	}
 
 	@Override public void onClick(View v) {
 		switch (v.getId()) {
+		
 		case R.id.btn_sync:
-			File p = Environment.getExternalStorageDirectory();
-			Toast.makeText(this, p.getAbsolutePath(), 1).show();
+			//同步
+			client.setSyncingImage(true);
 			break;
 		case R.id.btn_pre:
-			File p1 = Environment.getRootDirectory();
-			Toast.makeText(this, p1.getAbsolutePath(), 1).show();
+			//浏览图片不同步
+			client.setSyncingImage(false);
+			cur--;
+			if(cur < 0){
+				cur = image_total - 1;
+			}
+			updateImageView();
 			break;
 		case R.id.btn_next:
-			
+			//浏览图片不同步
+			client.setSyncingImage(false);
+			cur++;
+			if(cur >= image_total){
+				cur = 0;
+			}
+			updateImageView();
 			break;
 		case R.id.btn_save:
 			new SaveImageTask().execute();
@@ -98,43 +106,33 @@ public class Display extends BaseUIActivity implements View.OnClickListener{
 			break;
 		}
 	}
+	//更新图片总数
+	private void updateImageCount(){
+		image_total = ImageStorageUtil.getFileCount();
+		cur = image_total - 1;
+	}
+	
+	private void updateImageView(){
+		Bitmap bitmap = ImageStorageUtil.getBitmap(cur);
+		if(bitmap != null){
+			iv.setImageBitmap(bitmap);
+		}
+	}
 	
 	class SaveImageTask extends AsyncTask<Void, Void, Boolean>{
 
 		@Override protected Boolean doInBackground(Void... params) {
-			Bitmap bmp = ((BitmapDrawable)iv.getDrawable()).getBitmap();
-			 
-			FileOutputStream out = null;
-			try {
-				String _fileName = ImageStorageUtil.getRoolFile() + "/" +System.currentTimeMillis() + ".png";
-			    out = new FileOutputStream(_fileName);
-			    bmp.compress(Bitmap.CompressFormat.PNG, 40, out); // bmp is your Bitmap instance
-			    // PNG is a lossless format, the compression factor (100) is ignored
-			    ImageStorageUtil.clean();
-			    return true;
-			} catch (Exception e) {
-			    e.printStackTrace();
-			    return false;
-			} finally {
-			    try {
-			        if (out != null) {
-			            out.close();
-			        }
-			    } catch (IOException e) {
-			        e.printStackTrace();
-			    }
-			}
+			return ImageStorageUtil.saveBitmap(((BitmapDrawable)iv.getDrawable()).getBitmap());
 		}
 
 		@Override protected void onPostExecute(Boolean result) {
 			if(result){
-				Toast.makeText(Display.this, "已保存", 1).show();
+				updateImageCount();
+				Toast.makeText(Display.this, "已保存", Toast.LENGTH_SHORT).show();
 			}else{
-				Toast.makeText(Display.this, "保存失败", 1).show();
+				Toast.makeText(Display.this, "保存失败", Toast.LENGTH_SHORT).show();
 			}
 		}
-		
-		
 	}
 
 }

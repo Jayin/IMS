@@ -13,14 +13,18 @@ import android.widget.ImageView;
 public class DisplayHandler extends Handler {
 	private ImageView iv;
 
+	
+
 	public DisplayHandler(ImageView iv) {
 		this.iv = iv;
 	}
 
 	@Override
 	public void handleMessage(Message msg) {
-		if (msg != null && msg.obj != null) {
-			iv.setImageBitmap((Bitmap) msg.obj);
+		if (msg != null && msg.obj != null ) {
+			if(iv != null){
+				iv.setImageBitmap((Bitmap) msg.obj);
+			}
 		} else {
 			Log.e("debug", "handlerMessage():::msg or msg.obj is null");
 		}
