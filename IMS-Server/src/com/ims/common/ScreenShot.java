@@ -84,7 +84,6 @@ public class ScreenShot {
 	 */
 	public static BufferedImage getImage() {
 		Dimension d = getScreenSize();
-		System.out.println();
 		BufferedImage screenshot = null;
 		try {
 			screenshot = (new Robot()).createScreenCapture(new Rectangle(0, 0,
