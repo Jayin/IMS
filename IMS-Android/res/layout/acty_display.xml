@@ -6,21 +6,56 @@
 
     <ImageView
         android:id="@+id/acty_display_iv_display"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/ic_launcher" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/acty_display_menu"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="45dp"
+            android:id="@+id/btn_sync"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
+            android:layout_weight="1"
             android:background="@drawable/acty_display_menu_bg"
-            android:text="菜单" />
-    </RelativeLayout>
+            android:gravity="center"
+            android:text="同步" />
+
+        <TextView
+            android:id="@+id/btn_pre"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:background="@drawable/acty_display_menu_bg"
+            android:gravity="center"
+            android:text="上一个" />
+
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:background="@drawable/acty_display_menu_bg"
+            android:gravity="center"
+            android:text="下一个" />
+
+        <TextView
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:background="@drawable/acty_display_menu_bg"
+            android:gravity="center"
+            android:text="保存" />
+    </LinearLayout>
 
 </FrameLayout>
