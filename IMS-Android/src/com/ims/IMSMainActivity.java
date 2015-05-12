@@ -296,7 +296,9 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 			ask.setPor(pro);
 			askAdapter.addAsk(ask);
 			lv_ask_proList.setAdapter(askAdapter);
+			lv_ask_proList.setSelection(askAdapter.getCount()-1);
 			client.setAskPro(pro);
+			
 			client.addTask(Constant.Status_Asking);
 			break;
 
