@@ -1,6 +1,8 @@
 package com.ims;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.ims.handler.DisplayHandler;
 import com.ims.handler.DownloadHandler;
 import com.ims.handler.IdentifyHandler;
 import com.ims.utils.Constant;
+import com.ims.utils.ImageStorageUtil;
 import com.zxing.activity.CaptureActivity;
 
 /**
@@ -100,7 +103,9 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 
 	private void initSetting() {
 		frame_setting = (RelativeLayout) _getView(R.id.main_content_setting);
-
+		
+		findViewById(R.id.btn_about).setOnClickListener(this);
+		findViewById(R.id.btn_cleanAllImage).setOnClickListener(this);
 	}
 
 	private void initContentView() {
@@ -258,8 +263,6 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 					.show();
 			return;
 		}
-		Toast.makeText(IMSMainActivity.this, "6666", Toast.LENGTH_SHORT)
-		.show();
 		switch (v.getId()) {
 		case R.id.main_footbar_ask:
 			switchPressedState(v);
@@ -314,6 +317,15 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 			client.addTask(Constant.Status_Asking);
 			break;
 
+		case R.id.btn_about:
+			Uri uri = Uri.parse("https://github.com/Jayin/IMS");
+			Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+			startActivity(intent);
+			break;
+			
+		case R.id.btn_cleanAllImage:
+			new CleanAllImage().execute();
+			break;
 		}
 
 	}
@@ -338,5 +350,22 @@ public class IMSMainActivity extends BaseUIActivity implements OnClickListener {
 			client.addTask(Constant.Status_Identifying);
 			client.start();
 		}
+	}
+	
+	class CleanAllImage extends AsyncTask<Void, Void, Void>{
+
+		@Override protected Void doInBackground(Void... params) {
+			ImageStorageUtil.cleanAllFile();
+			return null;
+		}
+
+		@Override protected void onPreExecute() {
+			toast("清理中...");
+		}
+
+		@Override protected void onPostExecute(Void result) {
+			toast("清理完毕");
+		}
+		
 	}
 }

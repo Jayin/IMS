@@ -21,7 +21,7 @@
                 <!-- 后面的添加直接复制 下面的RelativeLayout即可~ -->
 
                 <RelativeLayout
-                    android:id="@+id/acty_etips_main_setting_rely_aboutus"
+                    android:id="@+id/btn_about"
                     style="@style/Acty_Course_Setting.rely" >
 
                     <TextView
@@ -30,6 +30,18 @@
 
                     <ImageView
                         android:id="@+id/imageView1"
+                        style="@style/Acty_Course_Setting.imageview" />
+                </RelativeLayout>
+                
+                  <RelativeLayout
+                    android:id="@+id/btn_cleanAllImage"
+                    style="@style/Acty_Course_Setting.rely" >
+
+                    <TextView
+                        style="@style/Acty_Course_Setting.textview"
+                        android:text="清理图片" />
+
+                    <ImageView
                         style="@style/Acty_Course_Setting.imageview" />
                 </RelativeLayout>
             </LinearLayout>
