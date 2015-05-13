@@ -2,7 +2,16 @@
 
 当时由于技术原因，后台采用Java Socket + xml (模拟简单的http).
 
-## `data/`
+## Run
+
+```shell
+cd path/to/IMS/IMS-Server/classes/artifacts/IMSServer_jar
+java -jar IMSServer.jar
+```
+
+Yet,double click the `IMSServer.jar` may works if `java` in your PATH
+
+## data/
 
 
 ### MeetingData.xml
@@ -22,3 +31,6 @@
 userName@@@content
 ```
 
+## build as a excuteable jar
+
+in `idea` you need [this](https://www.jetbrains.com/idea/help/packaging-a-module-into-a-jar-file.html)
